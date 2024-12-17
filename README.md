@@ -1,275 +1,184 @@
+# **👑 King'o News**
 
 ![Logo](src/assets/screenshots/logo.png)
 
+A dynamic **news portal** application built with **Angular** that allows users to read trending articles, manage accounts, and interact with live news content via **NewsAPI**. The project features user authentication, CRUD operations, and admin management capabilities.
 
-# King'o News  
-    
+---
 
-Lisez tous les articles récents sur les drames et les actualités de votre choix via NewsAPI
-<br><br><br><br><br><br><br><br>
+## **Features**
 
-## Features
+- 🔐 **Google Authentication** for secure user login.
+- 👤 **User Management** (CRUD): Create, Read, Update, and Delete user accounts.
+- 📰 **Trending News**: List of the most recent news articles.
+- 🗂️ **Category Filtering**: Filter news articles by specific categories.
+- 🔎 **Search Functionality**: Search for articles of your choice.
+- 📨 **Contact Form**: Send us a message for any issues.
+- 🌐 **API Integration**: Full manipulation of the **NewsAPI**.
 
-- Système d'authentification Google
-- utilisateur C.R.U.D 
-- liste des articles d'actualité récents
-- liste des articles de presse par catégorie
-- lire tous les détails de l'article
-- rechercher un article de votre choix
-- formulaire de contact : envoyez-nous un message si vous rencontrez un problème
-- manipulation complète du NewsAPI
+---
 
+## **Screenshots**
 
-<br><br><br><br><br><br><br><br>
-
-## Screenshots
-
-- Page d'index avant la connexion, il s'agit de la première page qu'un utilisateur verra en visitant le site Web, elle contient un en-tête interactif et une affiche
+### **1. Home Page (Before Login)**
+The first page a user sees with an interactive header and display poster.
 ![1](src/assets/screenshots/1.png)
 
-- Page d'index après connexion (utilisateur), cette page est très similaire à la page précédente mais elle contient de nouvelles fonctionnalités accessibles uniquement aux utilisateurs enregistrés.
+### **2. Home Page (User Logged In)**
+The logged-in user sees additional functionalities.
 ![9](src/assets/screenshots/9.png)
 
-- Page d'index après connexion (administrateur), cette page est très similaire à la page précédente mais elle contient des fonctionnalités administrateur.
+### **3. Home Page (Admin Logged In)**
+The admin sees enhanced features.
 ![6](src/assets/screenshots/6.png)
 
-
-- Page de gestion de compte, il s'agit de la page vers laquelle un utilisateur enregistré est redirigé en cliquant sur l'option "Manage Account", elle contient une fonction R.U.D qui affiche les détails de l'utilisateur et lui donne la possibilité de le modifier ou de supprimer son compte.
+### **4. Manage Account Page**
+Accessible to logged-in users for editing or deleting their account.
 ![7](src/assets/screenshots/7.png)
 
-- L'utilisateur est ensuite stocké sur la Firebase Realtime Database et chaque fois que l'utilisateur fait une demande de modification à partir de la page "Manage Account", les détails de l'utilisateur sont également modifiés du côté de la base de données.  
-
-![10](src/assets/screenshots/10.png)  
-
+### **5. Firebase Integration**
+User data is stored in Firebase Realtime Database, updated automatically.
+![10](src/assets/screenshots/10.png)
 ![11](src/assets/screenshots/11.png)
 
-
-- Page des titres, il s'agit de la page vers laquelle l'utilisateur est redirigé en cliquant sur l'option "Trending News", il les redirige vers une page qui exécute un appel GET à l'API news et renvoie une liste des articles d'actualités en vogue à ce moment-là.
-
-    -L'utilisateur peut également filtrer la sortie en choisissant l'une des catégories répertoriées sous l'option, qui filtre ensuite l'appel GET pour ne renvoyer que les articles d'actualité de cette catégorie spécifique.
-
+### **6. Trending News Page**
+Displays news articles fetched from NewsAPI with category filtering.
 ![3](src/assets/screenshots/3.png)
 
-
-- Il s'agit de la page de détails de l'article, en sélectionnant l'un des articles de presse de la page précédente, l'utilisateur est redirigé vers une nouvelle page contenant des informations détaillées sur l'article.
-
+### **7. Article Details Page**
+Detailed information for a selected news article.
 ![4](src/assets/screenshots/4.png)
 
-
-- Page FAQ, cette page contient quelques questions qui nous sont souvent posées sur notre site Web, si vous avez une question différente, n'hésitez pas à visiter notre page "Contactez-nous" et à nous envoyer un message
-
+### **8. FAQ Page**
+Frequently asked questions about the site.
 ![5](src/assets/screenshots/5.png)
 
-
-- Page "Admin Panel", cette page n'est accessible qu'aux administrateurs, elle utilise l'intégration Firebase pour renvoyer une liste complète de tous les utilisateurs actuellement inscrits sur notre site Web, et donne la possibilité d'afficher et de modifier l'utilisateur, ou de le supprimer de la base de données .
-
+### **9. Admin Panel**
+Accessible only to administrators for managing all user data.
 ![8](src/assets/screenshots/8.png)
 
+---
 
+## **Tech Stack**
 
+- **Front-End**: Angular, Bootstrap
+- **Back-End**: NewsAPI, Firebase, FormSubmit
 
-<br><br><br><br><br><br><br><br>
+---
 
+## **API Reference**
 
-
-## Tech
-
-**Front-End:** Angular, Bootstrap
-
-**Back-End:** NewsAPI, Firebase, FormSubmit
-
-<br><br><br><br><br><br><br><br>
-
-
-## Référence API (NewsAPI)
-
-#### Get top headlines of a country
-
+### **Get Top Headlines**
 ```http
-  GET https://newsapi.org/v2/top-headlines?country=PAYS&apiKey=api_key
+GET https://newsapi.org/v2/top-headlines?country={COUNTRY}&apiKey={API_KEY}
 ```
+| Parameter     | Type     | Description                                               |
+| :------------ | :------- | :-------------------------------------------------------- |
+| `apiKey`      | `string` | **Required**. Your API Key                                |
+| `country`     | `string` | 2-letter ISO 3166-1 code of the country for top headlines |
+| `category`    | `string` | Filter news by category (e.g., business, sports, tech).   |
+| `pageSize`    | `int`    | Number of results per request (default 20, max 100).      |
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. your API Key |
-| `PAYS` | `string` | The 2-letter ISO 3166-1 code of the country you want to get headlines for. Note: you can't mix this param with the sources param. |
-| `category` | `string` | The category you want to get headlines for. Note: you can't mix this param with the sources param.|
-|  | | Possible options: business, entertainment, general, health, science, sports, technology.   |
-| `sources` | `string` | A comma-seperated string of identifiers for the news sources or blogs you want headlines from. Use the /top-headlines/sources endpoint to |
-|  | | locate these programmatically or look at the sources index. Note: you can't mix this param with the country or category params.  |
-| `pageSize` | `int` | The number of results to return per page (request). 20 is the default, 100 is the maximum. |
-| `page` | `int` | Use this to page through the results if the total results found is greater than the page size. |
-
-#### search for an article
-
+### **Search for Articles**
 ```http
-  GET https://newsapi.org/v2/everything?q=SEARCH&apiKey=api_key
+GET https://newsapi.org/v2/everything?q={SEARCH_TERM}&apiKey={API_KEY}
 ```
+| Parameter     | Type     | Description                                |
+| :------------ | :------- | :----------------------------------------- |
+| `apiKey`      | `string` | **Required**. Your API Key                 |
+| `q`           | `string` | Keywords or phrases to search for articles |
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `api_key` | `string` | **Required**. your API Key |
-| `q`      | `string` | Keywords or phrases to search for in the article title and body. |
+---
 
+## **Run Locally**
 
-
-
-<br><br><br><br><br><br><br><br>
-
-## Référence des Couleurs
-
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Footer Blue | ![0d6efd](https://via.placeholder.com/10/0d6efd?text=+) #0d6efd |
-| Danger | ![#f93154](https://via.placeholder.com/10/f93154?text=+) #f93154 |
-| Primary | ![#1266f1](https://via.placeholder.com/10/1266f1?text=+) #1266f1 |
-| Warning | ![#ffa900](https://via.placeholder.com/10/ffa900?text=+) #ffa900 |
-
-<br><br><br><br><br><br><br><br>
-
-
-
-## Exécuter Localement
-
-Clone le projet
-
+Clone the project:
 ```bash
-  git clone https://github.com/RedaBoi12/kingo-news/tree/kingo
+git clone https://github.com/RedaBoi12/kingo-news
 ```
 
-Aller dans le répertoire du projet
-
+Go to the project directory:
 ```bash
-  cd kingo-news-kingo
+cd kingo-news
 ```
 
-Installer les dépendances
-
+Install dependencies:
 ```bash
-  npm install
+npm install
 ```
 
-Démarrer le serveur d'Angular CLI
-
+Run the development server:
 ```bash
-  ng serve
+ng serve
 ```
 
+Access the project at:
+```
+http://localhost:4200
+```
 
-<br><br><br><br><br><br><br><br>
+---
 
+## **Color Reference**
 
-## Bibliothèques NPM
+| Color       | Hex Code               |
+|-------------|------------------------|
+| Primary     | ![#1266f1](https://via.placeholder.com/10/1266f1?text=+) `#1266f1` |
+| Danger      | ![#f93154](https://via.placeholder.com/10/f93154?text=+) `#f93154` |
+| Warning     | ![#ffa900](https://via.placeholder.com/10/ffa900?text=+) `#ffa900` |
+| Footer Blue | ![#0d6efd](https://via.placeholder.com/10/0d6efd?text=+) `#0d6efd` |
 
-- Angular CLI
-- Angular Material
-- Angular Fire
-- Bootstrap MD
-- Bootstrap
-- Firebase
-- Firebase Tools
-- FortAwesome
-- rxjs
+---
 
+## **Roadmap**
 
+- 🚀 **Upcoming Features**:
+  - Like System for Articles
+  - Comment System for Articles
+  - Premium Subscription Plans
+  - Cross-Browser Support
 
-<br><br><br><br><br><br><br><br>
+---
 
+## **Feedback**
 
-## FAQ
+If you have any feedback, suggestions, or encounter issues, please reach out:
+**Email**: [redabusiness10@gmail.com](mailto:redabusiness10@gmail.com)
 
-#### Combien de temps ce projet vous a-t-il pris ?
+---
 
-Environ un mois et toujours en développement
+## **Version History**
 
-#### Comment puis-je tester ce projet localement ?
+- **v0.1**: Initial views created.
+- **v0.2**: Completed main views.
+- **v0.3**: Integrated NewsAPI for article management.
+- **v0.4**: Added Google authentication and account management.
+- **v1.0**: Finalized complete feature set with admin panel and CRUD operations.
 
-Veuillez vous référer à la section "Exécuter localement" pour afficher un guide étape par étape
+---
 
-#### Pourquoi avez-vous décidé de créer un site Web d'actualités comme premier projet ?
+## **About the Creator**
 
+Hi, I’m [ElGoumri Reda](https://www.github.com/RedaBoi12), the creator of **King'o News**. This project is my first step into learning Angular, integrating APIs, and building dynamic web applications.
 
-j'ai toujours voulu créer un site Web d'actualités pour tester pleinement mon potentiel dans un framework  
-et j'ai trouvé l'API NewsApi qui m'a évité de rechercher et de télécharger personnellement des articles  
-d'actualité et de les enregistrer localement.
+---
 
+## **🛠 Skills**
 
+**Languages**: HTML, CSS, JavaScript, TypeScript  
+**Frameworks**: Angular, Bootstrap  
+**Tools**: Firebase, RxJS, FormSubmit
 
+---
 
-<br><br><br><br><br><br><br><br>
+## **Lessons Learned**
 
-## Roadmap
+Working on this project taught me:
+- How to fully manipulate APIs using Angular's `HttpClient`.
+- Building modular, reusable components in Angular.
+- Debugging errors effectively and enhancing problem-solving skills.
+- Seamlessly integrating authentication systems like Firebase.
 
-- Additional browser support
+This project was a great opportunity to test and expand my front-end development skills while creating a functional, user-friendly news portal.
 
-- Système du Like des articles
-
-- Système des Commentaires d'articles
-
-- Abonnements payants
-
-
-<br><br><br><br><br><br><br><br>
-
-
-
-## Feedback
-
-Si vous avez des commentaires, veuillez me contacter à redabusiness10@gmail.com
-
-
-
-
-
-<br><br><br><br><br><br><br><br>
-
-## Gestion des Versions
-
-- **v0.1:** Création des vues principales
-- **v0.15:** Remodelé et fini toutes les vues
-- **v0.2:** Ajout de la première implémentation de newsAPI
-- **v0.3:** Ajout de la première implémentation du système de connexion par e-mail et mot de passe
-- **v0.4:** Ajout de la manipulation complète de NewsAPI avec les catégories et les détails de l'article
-- **v0.5:** Basculement vers le système d'authentification Google pour avoir Access a l'API Google Contacts
-- **v1.0:** 
-    * Ajout d'une nouvelle possibilité de recherche API pour rechercher n'importe quel article dans la base de données
-    - Ajout du formulaire de contact utilisant le service de soumission de formulaire
-    - Ajout de la gestion complète du profil, y compris l'édition détaillée et la suppression du compte
-    - Ajout d'un panneau d'administration auquel seuls les utilisateurs ayant un rang d'administrateur ont accès
-    - Ajout du CRUD des utilisateurs complets dans le panneau d'administration
-    - Passé à la version 1.0 car d'autres mises à jour mineures ont été ajoutées et jamais mentionnées
-    
-    
-    <br><br><br><br><br><br><br><br>
-    
-## 🚀 A propos du createur
-
-Bonjour, je m'appelle [ElGoumri Reda](https://www.github.com/RedaBoi12), et je suis le créateur du site Web  
-"The King of News (King'o News)", c'est mon premier projet angular et  
-est principalement destiné à m'aider à apprendre et à comprendre le framework  
-autant que possible .
-
-<br><br><br><br><br><br><br><br>
-
-
-
-## 🛠 Compétences
-HTML, CSS, jQuery ,Javascript, Typescript
-Frameworks: Bootstrap, Angular
-
-
-<br><br><br><br>
-
-## Leçons apprises
-
-Bien avant ce projet, j'avais très peu de connaissances sur le développement front end  
-ou le développement Web en général, mais travailler sur ce projet, obtenir des erreurs  
-et passer autant de temps à chercher des correctifs est vraiment la façon dont une personne  
-apprend quelque chose.  
-
-Le défi le plus difficile pour moi dans ce projet a été d'apprendre à manipuler complètement  
-une API à l'aide des requêtes http et du module HttpClient proposé par Angular, que ce soit en  
-récupérant toutes les informations via une requête GET, en chargeant le retour en un observable,  
-en le transformant en un array pour le déplacer d'une page à l'autre et afficher les informations  
-correctes à l'utilisateur. Ce fut un bon moment d'apprentissage.
-
+---
